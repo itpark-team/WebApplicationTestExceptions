@@ -2,31 +2,16 @@ using WebApplicationTestExceptions.Entities;
 
 namespace WebApplicationTestExceptions.Repositories;
 
-public class ToysRepository
+public class ToysRepository : IToysRepository
 {
-    private static ToysRepository _instance = null;
-
-    public static ToysRepository Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = new ToysRepository();
-            }
-
-            return _instance;
-        }
-    }
-
     private List<Toy> _toys;
 
-    private ToysRepository()
+    public ToysRepository()
     {
         _toys = new List<Toy>()
         {
-            new Toy() { Name = "Лего", Price = 900, AgeLimit = "3-5" },
-            new Toy() { Name = "Мишка", Price = 200, AgeLimit = "0+" },
+            new Toy() { Id = 1, Name = "Лего", Price = 900, AgeLimit = "3-5" },
+            new Toy() { Id = 2, Name = "Мишка", Price = 200, AgeLimit = "0+" },
         };
     }
 

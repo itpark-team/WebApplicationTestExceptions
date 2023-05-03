@@ -10,16 +10,19 @@ namespace WebApplicationTestExceptions.Controllers;
 [Route("toys/")]
 public class ToysController : ControllerBase
 {
-    private ToysService _toysService;
+    private IToysService _toysService;
+    private ILogger<ToysController> _logger;
 
-    public ToysController()
+    public ToysController(IToysService toysService, ILogger<ToysController> logger)
     {
-        _toysService = new ToysService();
+        _toysService = toysService;
+        _logger = logger;
     }
 
     [HttpGet("get-all")]
     public List<Toy> GetAll()
     {
+        _logger.LogInformation("GetAll Called");
         return _toysService.GetAll();
     }
 

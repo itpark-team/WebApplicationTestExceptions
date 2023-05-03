@@ -6,13 +6,13 @@ using WebApplicationTestExceptions.Validators;
 
 namespace WebApplicationTestExceptions.Services;
 
-public class ToysService
+public class ToysService : IToysService
 {
-    private ToysRepository _toysRepository;
+    private IToysRepository _toysRepository;
 
-    public ToysService()
+    public ToysService(IToysRepository toysRepository)
     {
-        _toysRepository = ToysRepository.Instance;
+        _toysRepository = toysRepository;
     }
 
     public List<Toy> GetAll()
@@ -55,7 +55,6 @@ public class ToysService
         }
         else
         {
-            
             throw new UserException("AddNewToy Exception", $"Invalid data {result.ToString(", ")}", 400);
         }
     }
